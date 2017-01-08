@@ -2,13 +2,13 @@ package coffee.arrivals;
 
 import coffee.json.JsonResource;
 
-import java.time.ZonedDateTime;
+import java.time.Instant;
 
 class Arrival implements JsonResource {
   private String name;
-  private ZonedDateTime time;
+  private Instant time;
 
-  Arrival(String name, ZonedDateTime time) {
+  Arrival(String name, Instant time) {
     this.name = name;
     this.time = time;
   }
@@ -17,7 +17,7 @@ class Arrival implements JsonResource {
     return name;
   }
 
-  ZonedDateTime getTime() {
+  Instant getTime() {
     return time;
   }
 }
