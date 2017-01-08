@@ -3,18 +3,21 @@ package coffee.arrivals;
 import ratpack.handling.Context;
 import ratpack.handling.Handler;
 
-import java.util.Date;
+import javax.inject.Inject;
+import javax.inject.Singleton;
 
-import static java.util.Collections.singletonList;
-
+@Singleton
 public class ArrivalsRetrieval implements Handler {
+  private ArrivalsStore arrivalsStore;
 
-  private static final int MINUTE = 60_000;
+  @Inject
+  public ArrivalsRetrieval(ArrivalsStore arrivalsStore) {
+    this.arrivalsStore = arrivalsStore;
+  }
 
   @Override
   public void handle(Context ctx) throws Exception {
-    Arrival arrival = new Arrival("John", new Date().getTime() + 10 * MINUTE);
-    ArrivalList list = new ArrivalList(singletonList(arrival));
+    ArrivalListResource list = new ArrivalListResource(arrivalsStore.getAll());
     ctx.render(list);
   }
 }

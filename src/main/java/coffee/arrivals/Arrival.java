@@ -2,20 +2,22 @@ package coffee.arrivals;
 
 import coffee.json.JsonResource;
 
-public class Arrival implements JsonResource {
-  private String name;
-  private long time;
+import java.time.ZonedDateTime;
 
-  Arrival(String name, long time) {
+class Arrival implements JsonResource {
+  private String name;
+  private ZonedDateTime time;
+
+  Arrival(String name, ZonedDateTime time) {
     this.name = name;
     this.time = time;
   }
 
-  public String getName() {
+  String getName() {
     return name;
   }
 
-  public long getTime() {
+  ZonedDateTime getTime() {
     return time;
   }
 }
