@@ -4,7 +4,7 @@ import coffee.json.JsonResource;
 
 import java.time.Instant;
 
-class Arrival implements JsonResource {
+public class Arrival implements JsonResource {
   private String name;
   private Instant time;
 

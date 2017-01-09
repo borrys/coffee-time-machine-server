@@ -8,25 +8,25 @@ import javax.inject.Singleton;
 
 @Singleton
 public class ArrivalsController implements Handler {
-  private ArrivalsStore arrivalsStore;
+  private final ArrivalsRepository arrivalsRepository;
 
   @Inject
-  public ArrivalsController(ArrivalsStore arrivalsStore) {
-    this.arrivalsStore = arrivalsStore;
+  public ArrivalsController(ArrivalsRepository arrivalsRepository) {
+    this.arrivalsRepository = arrivalsRepository;
   }
 
   @Override
   public void handle(Context ctx) throws Exception {
     ctx.byMethod(m -> m
         .get(() -> {
-          ArrivalListResource list = new ArrivalListResource(arrivalsStore.getAll());
+          ArrivalListResource list = new ArrivalListResource(arrivalsRepository.getAll());
           ctx.render(list);
         })
         .post(() -> {
           ctx.parse(ArrivalResource.class)
               .map(ArrivalResource::toArrival)
               .then(a -> {
-                arrivalsStore.add(a);
+                arrivalsRepository.add(a);
                 ctx.render(new ArrivalResource(a));
               });
         }));
