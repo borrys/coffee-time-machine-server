@@ -21,7 +21,7 @@ public class ArrivalsRepository {
 
   void add(Arrival a) {
     arrivals.put(a.getName(), a);
-    eventStore.arrivalDeclared(a);
+    eventStore.arrivalDeclared();
   }
 
   List<Arrival> getAll() {
