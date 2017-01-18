@@ -19,12 +19,14 @@ public class ArrivalsRepository {
     this.arrivals = new HashMap<>();
   }
 
-  void add(Arrival a) {
-    arrivals.put(a.getName(), a);
-    eventStore.arrivalDeclared();
+  synchronized void add(Arrival a) {
+    if (!arrivals.containsValue(a)) {
+      arrivals.put(a.getName(), a);
+      eventStore.arrivalDeclared();
+    }
   }
 
-  List<Arrival> getAll() {
+  synchronized List<Arrival> getAll() {
     return new ArrayList<>(arrivals.values());
   }
 }

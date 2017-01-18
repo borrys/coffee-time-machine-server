@@ -15,14 +15,14 @@ public class CoffeeTimeRepository {
     this.eventsStore = eventsStore;
   }
 
-  void setCoffeeTime(Instant coffeeTime) {
+  synchronized void setCoffeeTime(Instant coffeeTime) {
     if (!coffeeTime.equals(this.coffeeTime)) {
       this.coffeeTime = coffeeTime;
       eventsStore.coffeeTimeSet();
     }
   }
 
-  Optional<Instant> getCoffeeTime() {
+  synchronized Optional<Instant> getCoffeeTime() {
     return Optional.ofNullable(coffeeTime);
   }
 }
