@@ -1,5 +1,6 @@
 package coffee;
 
+import coffee.auth.AuthController;
 import coffee.events.EventsController;
 import coffee.arrivals.ArrivalsController;
 import coffee.time.CoffeeTimeController;
@@ -20,6 +21,7 @@ public class Main {
             })
             .path("arrivals", ArrivalsController.class)
             .path("coffeeTime", CoffeeTimeController.class)
+            .prefix("auth", AuthController.class)
             .get("events", EventsController.class)
         )
     );
