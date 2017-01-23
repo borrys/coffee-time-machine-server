@@ -7,11 +7,12 @@ import coffee.time.CoffeeTimeController;
 import ratpack.guice.Guice;
 import ratpack.http.MutableHeaders;
 import ratpack.server.RatpackServer;
+import ratpack.session.SessionModule;
 
 public class Main {
   public static void main(String... args) throws Exception {
     RatpackServer.start(server -> server
-        .registry(Guice.registry(b -> b.module(CoffeeModule.class)))
+        .registry(Guice.registry(b -> b.module(CoffeeModule.class).module(SessionModule.class)))
         .handlers(chain -> chain
             .all(ctx -> {
               MutableHeaders headers = ctx.getResponse().getHeaders();

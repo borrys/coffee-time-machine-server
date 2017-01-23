@@ -10,7 +10,6 @@ buildscript {
   }
 }
 
-
 apply plugin: "io.ratpack.ratpack-java"
 apply plugin: "idea"
 apply plugin: 'java'
@@ -24,6 +23,8 @@ repositories {
 
 dependencies {
   compile "io.ratpack:ratpack-guice:1.4.4"
+  compile "io.ratpack:ratpack-pac4j:1.4.4"
+  compile "org.pac4j:pac4j-oauth:1.8.8"
   compile "io.reactivex.rxjava2:rxjava:2.0.1"
   runtime "org.slf4j:slf4j-simple:1.7.21"
 }
